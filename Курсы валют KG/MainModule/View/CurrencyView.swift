@@ -14,9 +14,8 @@ class CurrencyView: UIView {
     var numberCountry = ""
     public var presenter: MainPresenterProtocol!
     
-    private var valutes: [String: String]?
     private var button = UIButton()
-    
+
     private var countryImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 45/2
@@ -33,6 +32,14 @@ class CurrencyView: UIView {
         return label
     }()
     
+    var typeLabel: UILabel = {
+       let label = UILabel()
+       label.textColor = .lightGray
+       label.textAlignment = .left
+       label.font = UIFont.boldSystemFont(ofSize: 14)
+       return label
+   }()
+    
     private var valuteFullNameTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .lightGray
@@ -44,7 +51,7 @@ class CurrencyView: UIView {
         return textField
     }()
     
-    var sumTextField: UITextField = {
+    var sumTextField: CurrencyTextField = {
         let textField = CurrencyTextField()
         textField.text = ""
         return textField
@@ -66,6 +73,12 @@ class CurrencyView: UIView {
         countryImage.image = UIImage(named: valuteName)
         self.numberCountry = numberCountry
         self.countryRow = countryRow
+        
+        if numberCountry == "First" {
+            typeLabel.text = "Я получу"
+        } else {
+            typeLabel.text = "У меня есть"
+        }
     }
     
     override init(frame: CGRect) {
@@ -91,14 +104,25 @@ class CurrencyView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         sumTextField.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        typeLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(typeLabel)
+        NSLayoutConstraint.activate([
+            typeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            typeLabel.bottomAnchor.constraint(equalTo: topAnchor, constant: 15),
+            typeLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
+            typeLabel.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
         
         addSubview(countryImage)
         NSLayoutConstraint.activate([
-            countryImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            countryImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            countryImage.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 5),
+            countryImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
             countryImage.heightAnchor.constraint(equalToConstant: 45),
             countryImage.widthAnchor.constraint(equalToConstant: 45)
         ])
+        
+
         
         addSubview(stackView)
         NSLayoutConstraint.activate([
@@ -110,24 +134,18 @@ class CurrencyView: UIView {
         addSubview(sumTextField)
         NSLayoutConstraint.activate([
             sumTextField.topAnchor.constraint(equalTo: topAnchor),
-            sumTextField.bottomAnchor.constraint(equalTo: bottomAnchor),
+            sumTextField.bottomAnchor.constraint(equalTo: countryImage.bottomAnchor),
             sumTextField.leftAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
-            sumTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+            sumTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
         ])
         
         addSubview(button)
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: topAnchor),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor),
+            button.bottomAnchor.constraint(equalTo: countryImage.bottomAnchor),
             button.leftAnchor.constraint(equalTo: leftAnchor),
             button.rightAnchor.constraint(equalTo: sumTextField.leftAnchor)
         ])
-    }
-    
-    func setData (valuteName: String, valuteFullName: String) {
-        valuteNameLabel.text = valuteName.uppercased()
-        valuteFullNameTextField.text = valuteFullName
-        countryImage.image = UIImage(named: valuteName)
     }
     
     func setData2 (indexCountry: Int) {
@@ -160,20 +178,7 @@ class CurrencyView: UIView {
 }
 
 extension CurrencyView: UITextFieldDelegate {
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if string.isEmpty { return true }
-////        print(range, string)
-//        let currentText = textField.text ?? ""
-////        if amount.append(string).isValidDouble(maxDecimalPlaces: 2)
-//        amount.append(string)
-////        print("amount",amount)
-////        print("currentText",currentText)
-//        let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
-////        print("replacementText",replacementText)
-////        let number = Double(replacementText) ?? 0.00
-////        sumTextField.text = Formatter.currency.string(from: NSNumber(value: number))
-//        return replacementText.isValidDouble(maxDecimalPlaces: 2)
-//    }
+
     func updateTextField() -> String? {
         let number = Double(amount / 100) + Double(amount % 100) / 100
         print(number)
@@ -228,7 +233,6 @@ extension CurrencyView: UIPickerViewDelegate, UIPickerViewDataSource {
                 inComponent component: Int) {
         setData2(indexCountry: row)
         presenter.view?.calculateSums(countryRow: row)
-//        print(countryRow)
     }
 
 }
