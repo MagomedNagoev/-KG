@@ -42,6 +42,12 @@ extension Formatter {
         formatter.currencySymbol = ""
         return formatter
     }()
+    
+    static let date: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy HH:mm"
+        return formatter
+    }()
 
 }
 

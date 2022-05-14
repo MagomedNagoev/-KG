@@ -22,6 +22,7 @@ protocol MainPresenterProtocol: class {
     func convertIntSum(amountString: String, currency: String, selectedSegmentIndex: Int) -> String
     func convertKgsSum(amountString: String, currency: String, selectedSegmentIndex: Int) -> String
     func getRatesWoKgs() -> [Valute]?
+    func getDate() -> String
     func calculate(amountString: String,
                    fromCountry: Int,
                    toCountry: Int,
@@ -95,6 +96,19 @@ class MainPresenter: MainPresenterProtocol {
                 }
             }
         }
+    }
+    
+    func getDate() -> String {
+        guard let dateString = valutes?[1].rates?.dateStart else {
+            return ""
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let date = dateFormatter.date(from: dateString) {
+            let rusDate = Formatter.date.string(from: date)
+             return rusDate
+        }
+        return ""
     }
     
     func calculate(amountString: String,
