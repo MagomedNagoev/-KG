@@ -52,6 +52,13 @@ class MainViewController: UIViewController {
         return label
     }()
     
+    private var dateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
+    }()
 
     
     override func viewDidLoad() {
@@ -108,6 +115,7 @@ class MainViewController: UIViewController {
         firstCurrencyView.translatesAutoresizingMaskIntoConstraints = false
         swipeButton.translatesAutoresizingMaskIntoConstraints = false
         greyView.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(greyView)
         NSLayoutConstraint.activate([
@@ -161,6 +169,17 @@ class MainViewController: UIViewController {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25)
         ])
+        
+        view.addSubview(dateLabel)
+        NSLayoutConstraint.activate([
+            dateLabel.heightAnchor.constraint(equalToConstant: 18),
+            dateLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
+            dateLabel.rightAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
+            dateLabel.leftAnchor.constraint(equalTo: tableView.leftAnchor, constant: 0)
+        ])
+        
+        
+        
     }
     
     func hideKeyboardOnTap() {
@@ -225,7 +244,7 @@ extension MainViewController: MainViewProtocol {
     
     func success() {
             self.tableView.reloadData()
-//        self.converter1View.setData(valutes: presenter.valutes)
+        dateLabel.text = presenter.getDate()
        
     }
     
