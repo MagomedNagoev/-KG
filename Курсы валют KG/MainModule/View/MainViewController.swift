@@ -10,7 +10,6 @@ import UIKit
 class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol!
     var tableView = UITableView()
-    var isBuy = false
     private var buyLabel: UILabel = {
         let label = UILabel()
         label.text = "покупка"
@@ -69,11 +68,9 @@ class MainViewController: UIViewController {
     
     @objc
     func swipeCurrency() {
-        print("swipe",firstCurrencyView.countryRow,secondCurrencyView.countryRow)
         (firstCurrencyView.countryRow,
          secondCurrencyView.countryRow) = (secondCurrencyView.countryRow,
                                            firstCurrencyView.countryRow)
-
     }
 
     // MARK: - Constraints
@@ -214,12 +211,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MainViewController: MainViewProtocol {
-    func calculateSums(countryRow: Int) {
-        if countryRow == 1 {
-            secondCurrencyView.sumTextField.text = presenter.calculate(amountString: firstCurrencyView.sumTextField.text ?? "0.00", fromCountry: firstCurrencyView.countryRow, toCountry: secondCurrencyView.countryRow, isBuy: isBuy, viewCountry: "Second")
+    func calculateSums(numberCountry: String) {
+        if numberCountry == "First" {
+            print("calculate for first")
+            secondCurrencyView.sumTextField.text = presenter.calculate(amountString: firstCurrencyView.sumTextField.text ?? "0.00", fromCountry: firstCurrencyView.countryRow, toCountry: secondCurrencyView.countryRow, viewCountry: "Second")
             secondCurrencyView.amount = 0
         } else {
-            firstCurrencyView.sumTextField.text = presenter.calculate(amountString: secondCurrencyView.sumTextField.text ?? "0.00", fromCountry: secondCurrencyView.countryRow, toCountry: firstCurrencyView.countryRow, isBuy: isBuy, viewCountry: "First")
+            print("calculate for second")
+            firstCurrencyView.sumTextField.text = presenter.calculate(amountString: secondCurrencyView.sumTextField.text ?? "0.00", fromCountry: secondCurrencyView.countryRow, toCountry: firstCurrencyView.countryRow, viewCountry: "First")
             firstCurrencyView.amount = 0
         }
     }

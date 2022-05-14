@@ -10,7 +10,7 @@ import UIKit
 protocol MainViewProtocol: class {
     func success()
     func failure(error: Error)
-    func calculateSums(countryRow: Int)
+    func calculateSums(numberCountry: String)
 }
 
 protocol MainPresenterProtocol: class {
@@ -25,7 +25,6 @@ protocol MainPresenterProtocol: class {
     func calculate(amountString: String,
                    fromCountry: Int,
                    toCountry: Int,
-                   isBuy: Bool,
                    viewCountry: String) -> String
     init(view: MainViewProtocol,networkService: NetworkServiceProtocol, router: RouterProtocol)
 }
@@ -100,11 +99,10 @@ class MainPresenter: MainPresenterProtocol {
     
     func calculate(amountString: String,
                    fromCountry: Int,
-                   toCountry: Int, isBuy: Bool, viewCountry: String) -> String {
+                   toCountry: Int, viewCountry: String) -> String {
         guard var sum = Double(amountString.filter({$0 != ","})) else {
             return ""
         }
-        
         guard let valutes = valutes else { print("Valutes is nil")
             return "0.00" }
         if let valuteFromCountry = valutes[fromCountry].rates,
@@ -113,21 +111,10 @@ class MainPresenter: MainPresenterProtocol {
            let sellRateFromCountry = Double(valuteFromCountry.sellRate ?? "0.00"),
            let sellRateToCountry = Double(valuteToCountry.sellRate ?? "0.00"),
            let buyRateToCountry = Double(valuteToCountry.buyRate ?? "0.00") {
-            print(buyRateFromCountry,buyRateToCountry,sellRateFromCountry,sellRateToCountry)
-            if isBuy {
-                if viewCountry == "First" {
-                    sum = sum * sellRateFromCountry / buyRateToCountry
-                } else {
-                    sum = sum * buyRateFromCountry / sellRateToCountry
-                }
-                
-                
+            if viewCountry == "First" {
+                sum = sum * buyRateFromCountry / sellRateToCountry
             } else {
-                if viewCountry == "First" {
-                    sum = sum * buyRateFromCountry / sellRateToCountry
-                } else {
-                    sum = sum * sellRateFromCountry / buyRateToCountry
-                }
+                sum = sum * sellRateFromCountry / buyRateToCountry
             }
         }
         

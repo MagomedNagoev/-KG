@@ -10,7 +10,14 @@ import UIKit
 class CurrencyView: UIView {
     let picker = UIPickerView()
     var amount = 0
-    var countryRow = 0
+    var countryRow: Int = 0 {
+        willSet(newValue) {
+            setData2(indexCountry: newValue)
+        }
+        didSet {
+            presenter.view?.calculateSums(numberCountry: numberCountry)
+        }
+    }
     var numberCountry = ""
     public var presenter: MainPresenterProtocol!
     
@@ -157,7 +164,7 @@ class CurrencyView: UIView {
             valuteNameLabel.text = titleAlias.uppercased()
             valuteFullNameTextField.text = valute.title
             countryImage.image = UIImage(named: titleAlias)
-            countryRow = indexCountry
+//            countryRow = indexCountry
         }
     }
     
@@ -181,7 +188,6 @@ extension CurrencyView: UITextFieldDelegate {
 
     func updateTextField() -> String? {
         let number = Double(amount / 100) + Double(amount % 100) / 100
-        print(number)
         return Formatter.currency.string(from: NSNumber(value: number))
     }
     
@@ -195,12 +201,7 @@ extension CurrencyView: UITextFieldDelegate {
             amount = amount / 10
             sumTextField.text = updateTextField()
         }
-        print(numberCountry)
-        if numberCountry == "First" {
-            presenter.view?.calculateSums(countryRow: 1)
-        } else {
-            presenter.view?.calculateSums(countryRow: 2)
-        }
+        presenter.view?.calculateSums(numberCountry: numberCountry)
         return false
     }
 }
@@ -231,8 +232,7 @@ extension CurrencyView: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView,
                 didSelectRow row: Int,
                 inComponent component: Int) {
-        setData2(indexCountry: row)
-        presenter.view?.calculateSums(countryRow: row)
+        countryRow = row
     }
 
 }
