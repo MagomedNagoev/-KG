@@ -96,6 +96,13 @@ class BalancesPresenter: BalancesPresenterProtocol {
         var sum = 0.00
         guard let valutes = valutes else { print("Valutes is nil")
             return "0.00" }
+        
+        guard let titleLabelValute = valutes[index].titleAlias,
+              let sellRateString = valutes[index].rates?.sellRate,
+              let sellLabelRate = Double(sellRateString) else {
+            return "0.00 KGS"
+        }
+        
         let rates = getRates()
         for rate in rates {
             for valute in valutes {
@@ -103,16 +110,15 @@ class BalancesPresenter: BalancesPresenterProtocol {
                    let amount = Double(amountString),
                    let sellRate = Double(valute.rates?.buyRate ?? "1"),
                    rate.country == valute.titleAlias {
-                    sum += amount * sellRate
+                    if valute.titleAlias == titleLabelValute {
+                        sum += amount
+                    } else {
+                        sum += amount * sellRate / sellLabelRate
+                    }
                 }
             }
         }
-        guard let sellRateString = valutes[index].rates?.sellRate,
-              let sellRate = Double(sellRateString) else {
-            return "0.00 KGS" 
-        }
-        
-        sum = sum / sellRate
+
         
         guard let sumString = Formatter.currency.string(from: NSNumber(value: sum)),
               let titleAlias = valutes[index].titleAlias?.uppercased()

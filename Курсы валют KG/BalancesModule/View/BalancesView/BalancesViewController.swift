@@ -11,11 +11,37 @@ import CoreData
 class BalancesViewController: UIViewController, UITextFieldDelegate {
     
     public var countryImage: UIImageView = {
-        let imageView = UIImageView()
+            let imageView = UIImageView()
+        imageView.backgroundColor = .red
         imageView.image = UIImage(named: "kgs")
         imageView.clipsToBounds = true
         imageView.backgroundColor = .orange
+        imageView.layer.cornerRadius = 80/2
         return imageView
+    }()
+
+    private var leftButton: UIButton = {
+      let button = UIButton()
+        button.addTarget(self, action: #selector(rightSwipe), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "chevron.left", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        button.setImage(image, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        return button
+    }()
+    
+    private var rightButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(leftSwipe), for: .touchUpInside)
+          button.translatesAutoresizingMaskIntoConstraints = false
+          let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
+          let image = UIImage(systemName: "chevron.right", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+          button.setImage(image, for: .normal)
+          button.heightAnchor.constraint(equalToConstant: 20).isActive = true
+          button.widthAnchor.constraint(equalToConstant: 20).isActive = true
+          return button
     }()
     
     public var valuteFullNameLabel: UILabel = {
@@ -83,6 +109,7 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
         totalSum.translatesAutoresizingMaskIntoConstraints = false
         
         
+        
         view.addSubview(countryImage)
         NSLayoutConstraint.activate([
             countryImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
@@ -91,8 +118,19 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
             countryImage.widthAnchor.constraint(equalToConstant: 80),
             countryImage.bottomAnchor.constraint(equalTo: countryImage.topAnchor, constant: 80)
         ])
-
-        countryImage.layer.cornerRadius = 80/2
+        
+        view.addSubview(leftButton)
+        NSLayoutConstraint.activate([
+            leftButton.rightAnchor.constraint(equalTo: countryImage.leftAnchor, constant: 0),
+            leftButton.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor),
+        ])
+        
+        view.addSubview(rightButton)
+        NSLayoutConstraint.activate([
+            rightButton.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 0),
+            rightButton.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor),
+        ])
+        
         
         view.addSubview(valuteFullNameLabel)
         NSLayoutConstraint.activate([
@@ -144,23 +182,9 @@ extension BalancesViewController: UITableViewDelegate, UITableViewDataSource {
 
         let rate = presenter.getRate(index: indexPath)
         cell.setData(nameValute: rate.country, amount:rate.amount, presenter: presenter, index: indexPath)
-//        cell.amountTextField.delegate = self
-//        cell.amountTextField.addTarget(self, action: #selector(refreshSum), for: .editingChanged)
+
         return cell
     }
-    
-//    @objc
-//    func refreshSum() {
-//        let rate = presenter.getRate(index: index)
-//            rate.amount = updateTextField()
-//        presenter.saveRate()
-//        print("\(presenter.summuriseValute())")
-//        totalSum.text = "\(presenter.summuriseValute())"
-//    }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter.tapOntheCountry()
-//    }
     
     // MARK: Table View Delegate
     
