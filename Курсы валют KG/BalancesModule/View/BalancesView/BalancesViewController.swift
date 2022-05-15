@@ -24,8 +24,8 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
       let button = UIButton()
         button.addTarget(self, action: #selector(rightSwipe), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "chevron.left", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .regular, scale: .large)
+        let image = UIImage(systemName: "chevron.left", withConfiguration: configuration)?.withTintColor(#colorLiteral(red: 0.7112803895, green: 0.7112803895, blue: 0.7112803895, alpha: 1), renderingMode: .alwaysOriginal)
         button.setImage(image, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 20).isActive = true
         button.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -36,8 +36,8 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
         let button = UIButton()
         button.addTarget(self, action: #selector(leftSwipe), for: .touchUpInside)
           button.translatesAutoresizingMaskIntoConstraints = false
-          let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
-          let image = UIImage(systemName: "chevron.right", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15, weight: .regular, scale: .large)
+          let image = UIImage(systemName: "chevron.right", withConfiguration: configuration)?.withTintColor(#colorLiteral(red: 0.7112803895, green: 0.7112803895, blue: 0.7112803895, alpha: 1), renderingMode: .alwaysOriginal)
           button.setImage(image, for: .normal)
           button.heightAnchor.constraint(equalToConstant: 20).isActive = true
           button.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -57,10 +57,10 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
     
     public var totalSum: UILabel = {
         let label = UILabel()
-        label.textColor = .lightGray
+        label.textColor = #colorLiteral(red: 0.8410194441, green: 0.8410194441, blue: 0.8410194441, alpha: 1)
         label.tintColor = .clear
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont(name: "OpenSans-Regular", size: 24)
         label.text = "0.00 KGS"
 
         return label
@@ -95,7 +95,7 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addOrderTapped))
-        
+        navigationItem.rightBarButtonItem?.tintColor = .white
         let fetchResult = presenter.resultController() as! NSFetchedResultsController<Rate>
         fetchResult.delegate = self
         
@@ -121,20 +121,20 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(leftButton)
         NSLayoutConstraint.activate([
-            leftButton.rightAnchor.constraint(equalTo: countryImage.leftAnchor, constant: 0),
+            leftButton.rightAnchor.constraint(equalTo: countryImage.leftAnchor, constant: -10),
             leftButton.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor),
         ])
         
         view.addSubview(rightButton)
         NSLayoutConstraint.activate([
-            rightButton.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 0),
+            rightButton.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 10),
             rightButton.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor),
         ])
         
         
         view.addSubview(valuteFullNameLabel)
         NSLayoutConstraint.activate([
-            valuteFullNameLabel.topAnchor.constraint(equalTo: countryImage.bottomAnchor, constant: 5),
+            valuteFullNameLabel.topAnchor.constraint(equalTo: countryImage.bottomAnchor, constant: 10),
             valuteFullNameLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
             valuteFullNameLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
             valuteFullNameLabel.bottomAnchor.constraint(equalTo: valuteFullNameLabel.topAnchor, constant: 20),
@@ -142,7 +142,7 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(totalSum)
         NSLayoutConstraint.activate([
-            totalSum.topAnchor.constraint(equalTo: valuteFullNameLabel.bottomAnchor, constant: 5),
+            totalSum.topAnchor.constraint(equalTo: valuteFullNameLabel.bottomAnchor, constant: 10),
             totalSum.rightAnchor.constraint(equalTo: view.rightAnchor),
             totalSum.leftAnchor.constraint(equalTo: view.leftAnchor),
             totalSum.bottomAnchor.constraint(equalTo: totalSum.topAnchor, constant: 20),

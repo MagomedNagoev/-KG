@@ -13,9 +13,9 @@ class CountryCell: UITableViewCell {
     private var valuteNameLabel: UILabel = {
         let label = UILabel()
         label.text = "kgs".uppercased()
-        label.textColor = .lightGray
+        label.textColor = #colorLiteral(red: 0.8350862509, green: 0.8350862509, blue: 0.8350862509, alpha: 1)
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "OpenSansRoman-SemiBold", size: 18)
         return label
     }()
 
@@ -24,14 +24,14 @@ class CountryCell: UITableViewCell {
         label.text = "Киргизский сом"
         label.textColor = .lightGray
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "OpenSans-Regular", size: 16)
         return label
     }()
 
     private var countryImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "kgs")
-        imageView.layer.cornerRadius = 45/2
+        imageView.layer.cornerRadius = 40/2
         imageView.clipsToBounds = true
         imageView.backgroundColor = .orange
         return imageView
@@ -42,7 +42,7 @@ class CountryCell: UITableViewCell {
         stackView.axis  = NSLayoutConstraint.Axis.horizontal
         stackView.distribution  = UIStackView.Distribution.fill
         stackView.alignment = UIStackView.Alignment.center
-        stackView.spacing   = 5
+        stackView.spacing   = 15
         return stackView
     }()
     
@@ -67,28 +67,27 @@ class CountryCell: UITableViewCell {
         line.translatesAutoresizingMaskIntoConstraints = false
         line.backgroundColor = .white
         
+        addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -20),
+            stackView.leftAnchor.constraint(equalTo: leftAnchor,constant: 20),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -0.5)
+        ])
+        
         addSubview(line)
         NSLayoutConstraint.activate([
-            line.topAnchor.constraint(equalTo: bottomAnchor, constant: -0.5),
-            line.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
-            line.leftAnchor.constraint(equalTo: leftAnchor,constant: 0),
+            line.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
+            line.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
+            line.leftAnchor.constraint(equalTo: valuteNameLabel.leftAnchor,constant: 0),
             line.bottomAnchor.constraint(equalTo: bottomAnchor)
 
         ])
         
-        addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
-            stackView.leftAnchor.constraint(equalTo: leftAnchor,constant: 0),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            stackView.bottomAnchor.constraint(equalTo: line.topAnchor)
-        ])
-        
         stackView.addSubview(countryImage)
         NSLayoutConstraint.activate([
-            countryImage.heightAnchor.constraint(equalToConstant: 45),
-            countryImage.widthAnchor.constraint(equalToConstant: 45)
+            countryImage.heightAnchor.constraint(equalToConstant: 40),
+            countryImage.widthAnchor.constraint(equalToConstant: 40)
         ])
         
 

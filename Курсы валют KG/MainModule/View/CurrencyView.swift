@@ -25,7 +25,7 @@ class CurrencyView: UIView {
 
     private var countryImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 45/2
+        imageView.layer.cornerRadius = 40/2
         imageView.clipsToBounds = true
         imageView.backgroundColor = .orange
         return imageView
@@ -33,26 +33,26 @@ class CurrencyView: UIView {
     
      var valuteNameLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .lightGray
+        label.textColor = #colorLiteral(red: 0.8350862509, green: 0.8350862509, blue: 0.8350862509, alpha: 1)
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "OpenSansRoman-SemiBold", size: 18)
         return label
     }()
     
     var typeLabel: UILabel = {
        let label = UILabel()
-       label.textColor = .lightGray
+       label.textColor = .white
        label.textAlignment = .left
-       label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont(name: "OpenSansRoman-SemiBold", size: 15)
        return label
    }()
     
     private var valuteFullNameTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .lightGray
+        textField.textColor = #colorLiteral(red: 0.7729910436, green: 0.7729910436, blue: 0.7729910436, alpha: 1)
         textField.tintColor = .clear
         textField.textAlignment = .left
-        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.font = UIFont(name: "OpenSansRoman-Light", size: 13)
 
 
         return textField
@@ -69,7 +69,7 @@ class CurrencyView: UIView {
         stackView.axis  = NSLayoutConstraint.Axis.vertical
         stackView.distribution  = UIStackView.Distribution.equalSpacing
         stackView.alignment = UIStackView.Alignment.leading
-        stackView.spacing   = 5
+        stackView.spacing   = 0
         return stackView
     }()
     
@@ -123,24 +123,24 @@ class CurrencyView: UIView {
         
         addSubview(countryImage)
         NSLayoutConstraint.activate([
-            countryImage.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 5),
+            countryImage.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 17),
             countryImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
-            countryImage.heightAnchor.constraint(equalToConstant: 45),
-            countryImage.widthAnchor.constraint(equalToConstant: 45)
+            countryImage.heightAnchor.constraint(equalToConstant: 40),
+            countryImage.widthAnchor.constraint(equalToConstant: 40)
         ])
         
 
         
         addSubview(stackView)
         NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor),
-            stackView.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 5),
-            stackView.rightAnchor.constraint(equalTo: centerXAnchor, constant: 30),
+            stackView.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor, constant: 2),
+            stackView.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 15),
+            stackView.rightAnchor.constraint(equalTo: centerXAnchor, constant: 15),
         ])
         
         addSubview(sumTextField)
         NSLayoutConstraint.activate([
-            sumTextField.topAnchor.constraint(equalTo: topAnchor),
+            sumTextField.topAnchor.constraint(equalTo: countryImage.topAnchor),
             sumTextField.bottomAnchor.constraint(equalTo: countryImage.bottomAnchor),
             sumTextField.leftAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
             sumTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
@@ -149,7 +149,7 @@ class CurrencyView: UIView {
         addSubview(button)
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: topAnchor),
-            button.bottomAnchor.constraint(equalTo: countryImage.bottomAnchor),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor),
             button.leftAnchor.constraint(equalTo: leftAnchor),
             button.rightAnchor.constraint(equalTo: sumTextField.leftAnchor)
         ])

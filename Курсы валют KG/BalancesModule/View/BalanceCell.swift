@@ -16,9 +16,9 @@ class BalanceCell: UITableViewCell {
     private var valuteNameLabel: UILabel = {
         let label = UILabel()
         label.text = "kgs".uppercased()
-        label.textColor = .lightGray
+        label.textColor = #colorLiteral(red: 0.8350862509, green: 0.8350862509, blue: 0.8350862509, alpha: 1)
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "OpenSansRoman-SemiBold", size: 18)
         return label
     }()
 
@@ -30,7 +30,7 @@ class BalanceCell: UITableViewCell {
     private var countryImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "kgs")
-        imageView.layer.cornerRadius = 45/2
+        imageView.layer.cornerRadius = 40/2
         imageView.clipsToBounds = true
         imageView.backgroundColor = .orange
         return imageView
@@ -62,14 +62,14 @@ class BalanceCell: UITableViewCell {
             countryImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             countryImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 0
             ),
-            countryImage.heightAnchor.constraint(equalToConstant: 45),
-            countryImage.widthAnchor.constraint(equalToConstant: 45)
+            countryImage.heightAnchor.constraint(equalToConstant: 40),
+            countryImage.widthAnchor.constraint(equalToConstant: 40)
         ])
         
         addSubview(valuteNameLabel)
         NSLayoutConstraint.activate([
             valuteNameLabel.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor),
-            valuteNameLabel.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 5),
+            valuteNameLabel.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 15),
             valuteNameLabel.rightAnchor.constraint(equalTo: centerXAnchor, constant: -10)
         ])
         

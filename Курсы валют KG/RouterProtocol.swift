@@ -32,6 +32,7 @@ class Router: RouterProtocol {
     init(tabBarController: UITabBarController, assemblyBuilder: AsselderBuilderProtocol) {
         self.tabBarController = tabBarController
         self.assemblyBuilder = assemblyBuilder
+        self.tabBarController?.configLaunch()
     }
     
     
@@ -52,14 +53,19 @@ class Router: RouterProtocol {
     
     func configureViewControllers() {
         if let tabBarController = tabBarController {
+            
+            let configuration = UIImage.SymbolConfiguration(pointSize: 18, weight: .light, scale: .large)
+            let imageBanknote = UIImage(systemName: "arrow.triangle.2.circlepath", withConfiguration: configuration)
+            let imageCase = UIImage(systemName: "briefcase.fill", withConfiguration: configuration)
             guard let mainViewController = assemblyBuilder?.createMainModule(router: self),
                   let balancesViewController = assemblyBuilder?.createBalancesModule(router: self)
                   else { return }
-            mainNavigationController = templateNavigationController(image: UIImage(systemName: "banknote")!,
-                                         tabBarItemTitle: "Курсы",
+            mainNavigationController = templateNavigationController(image:
+                                         imageBanknote!,
+                                         tabBarItemTitle: "Курсы валют",
                                          rootViewController: mainViewController)
             
-            balancesNavigationController = templateNavigationController(image: UIImage(systemName: "briefcase.fill")!,
+            balancesNavigationController = templateNavigationController(image:                                imageCase!,
                                          tabBarItemTitle: "Мои счета",
                                          rootViewController: balancesViewController)
             

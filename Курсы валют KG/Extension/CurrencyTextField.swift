@@ -24,13 +24,13 @@ class CurrencyTextField: UITextField {
         keyboardType = .decimalPad
         returnKeyType = .done
         autocorrectionType = .no
-        font = UIFont.systemFont(ofSize: 15)
-        textColor = .lightGray
+        font = UIFont(name: "Montserrat-Light", size: 17)
+        textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         contentVerticalAlignment = .center
         textAlignment = .right
 
         let colorPlaceholderText = NSAttributedString(string: "0.00",
-                                                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+                                                    attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)])
         attributedPlaceholder = colorPlaceholderText
     }
 }

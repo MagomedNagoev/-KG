@@ -26,6 +26,17 @@
 		1B55F26027E4FF9000C9787B /* AsselderModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F25F27E4FF9000C9787B /* AsselderModelBuilder.swift */; };
 		1B6ACF4A27F5C9A50075C6C8 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6ACF4927F5C9A50075C6C8 /* CurrencyTextField.swift */; };
 		1B6ACF5127F6D0580075C6C8 /* BalancesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6ACF5027F6D0580075C6C8 /* BalancesPresenter.swift */; };
+		1B6B8532282FF56E00BFDC8F /* TabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B8531282FF56E00BFDC8F /* TabBar+Ext.swift */; };
+		1B6B8537282FF67D00BFDC8F /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B8536282FF67D00BFDC8F /* LaunchView.swift */; };
+		1B6B853E2830132300BFDC8F /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B853D2830132200BFDC8F /* OpenSans.ttf */; };
+		1B6B853F2830132300BFDC8F /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B853D2830132200BFDC8F /* OpenSans.ttf */; };
+		1B6B85402830132300BFDC8F /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B853D2830132200BFDC8F /* OpenSans.ttf */; };
+		1B6B854628311AA900BFDC8F /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B854528311AA800BFDC8F /* Montserrat-Light.ttf */; };
+		1B6B854728311AA900BFDC8F /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B854528311AA800BFDC8F /* Montserrat-Light.ttf */; };
+		1B6B854828311AA900BFDC8F /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B854528311AA800BFDC8F /* Montserrat-Light.ttf */; };
+		1B6B854D28311B5B00BFDC8F /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B854C28311B5B00BFDC8F /* Montserrat-Regular.ttf */; };
+		1B6B854E28311B5B00BFDC8F /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B854C28311B5B00BFDC8F /* Montserrat-Regular.ttf */; };
+		1B6B854F28311B5B00BFDC8F /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B6B854C28311B5B00BFDC8F /* Montserrat-Regular.ttf */; };
 		1B7C2CDC280AEA5700A187E6 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C2CDB280AEA5700A187E6 /* CountryCell.swift */; };
 		1B825C1F27E5096C001E2A59 /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B825C1E27E5096C001E2A59 /* RateCell.swift */; };
 		1B825C5627E730DB001E2A59 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B825C5527E730DB001E2A59 /* CurrencyView.swift */; };
@@ -80,6 +91,11 @@
 		1B55F25F27E4FF9000C9787B /* AsselderModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsselderModelBuilder.swift; sourceTree = "<group>"; };
 		1B6ACF4927F5C9A50075C6C8 /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		1B6ACF5027F6D0580075C6C8 /* BalancesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesPresenter.swift; sourceTree = "<group>"; };
+		1B6B8531282FF56E00BFDC8F /* TabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Ext.swift"; sourceTree = "<group>"; };
+		1B6B8536282FF67D00BFDC8F /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		1B6B853D2830132200BFDC8F /* OpenSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = OpenSans.ttf; path = "../../../../../../../Downloads/Open Sans/OpenSans.ttf"; sourceTree = "<group>"; };
+		1B6B854528311AA800BFDC8F /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "../../../../../../../Downloads/Montserrat/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		1B6B854C28311B5B00BFDC8F /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Regular.ttf"; path = "../../../../../../../Downloads/Montserrat/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		1B7C2CDB280AEA5700A187E6 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		1B825C1E27E5096C001E2A59 /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
 		1B825C5527E730DB001E2A59 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
@@ -186,10 +202,10 @@
 		1B55F1FC27E4F5D500C9787B /* Курсы валют KG */ = {
 			isa = PBXGroup;
 			children = (
+				1B6B853C2830130700BFDC8F /* Fonts */,
 				1B55F1FD27E4F5D500C9787B /* AppDelegate.swift */,
 				1B55F25F27E4FF9000C9787B /* AsselderModelBuilder.swift */,
 				1B2A0D1327F04B2F00C3A21E /* RouterProtocol.swift */,
-				1B6ACF4927F5C9A50075C6C8 /* CurrencyTextField.swift */,
 				1B6ACF3A27F5C3B50075C6C8 /* Extension */,
 				1B55F25427E4FA7D00C9787B /* ServiceLayer */,
 				1B55F25827E4FAB100C9787B /* MainModule */,
@@ -198,6 +214,7 @@
 				1B55F20927E4F5DC00C9787B /* Assets.xcassets */,
 				1B55F20E27E4F5DC00C9787B /* Info.plist */,
 				1B55F20627E4F5D500C9787B /* ____________KG.xcdatamodeld */,
+				1B6B8536282FF67D00BFDC8F /* LaunchView.swift */,
 			);
 			path = "Курсы валют KG";
 			sourceTree = "<group>";
@@ -270,8 +287,20 @@
 			isa = PBXGroup;
 			children = (
 				1BBCAC442801C5D700E12E4F /* UIResponder+Ext.swift */,
+				1B6ACF4927F5C9A50075C6C8 /* CurrencyTextField.swift */,
+				1B6B8531282FF56E00BFDC8F /* TabBar+Ext.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		1B6B853C2830130700BFDC8F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1B6B853D2830132200BFDC8F /* OpenSans.ttf */,
+				1B6B854528311AA800BFDC8F /* Montserrat-Light.ttf */,
+				1B6B854C28311B5B00BFDC8F /* Montserrat-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		1B98D503280840A000B29C56 /* CountriesModule */ = {
@@ -411,7 +440,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6B854D28311B5B00BFDC8F /* Montserrat-Regular.ttf in Resources */,
+				1B6B854628311AA900BFDC8F /* Montserrat-Light.ttf in Resources */,
 				1B55F20A27E4F5DC00C9787B /* Assets.xcassets in Resources */,
+				1B6B853E2830132300BFDC8F /* OpenSans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +451,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6B854E28311B5B00BFDC8F /* Montserrat-Regular.ttf in Resources */,
+				1B6B854728311AA900BFDC8F /* Montserrat-Light.ttf in Resources */,
+				1B6B853F2830132300BFDC8F /* OpenSans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +461,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6B854F28311B5B00BFDC8F /* Montserrat-Regular.ttf in Resources */,
+				1B6B854828311AA900BFDC8F /* Montserrat-Light.ttf in Resources */,
+				1B6B85402830132300BFDC8F /* OpenSans.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B825C5627E730DB001E2A59 /* CurrencyView.swift in Sources */,
+				1B6B8532282FF56E00BFDC8F /* TabBar+Ext.swift in Sources */,
 				1B6ACF5127F6D0580075C6C8 /* BalancesPresenter.swift in Sources */,
 				1B2A0D1F27F062CA00C3A21E /* BalancesViewController.swift in Sources */,
 				1B52502A280EC0C900F0B6A4 /* RateService.swift in Sources */,
@@ -460,6 +499,7 @@
 				1B55F1FE27E4F5D500C9787B /* AppDelegate.swift in Sources */,
 				1B4B98C128015C1D006F4899 /* BlancesView+ExtFetchResultController.swift in Sources */,
 				1B55F25027E4FA6F00C9787B /* NetworkService.swift in Sources */,
+				1B6B8537282FF67D00BFDC8F /* LaunchView.swift in Sources */,
 				1B98D50E280841CB00B29C56 /* CountriesPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

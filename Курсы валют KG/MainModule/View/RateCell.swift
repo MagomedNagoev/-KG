@@ -13,34 +13,34 @@ class RateCell: UITableViewCell {
     private var valuteNameLabel: UILabel = {
         let label = UILabel()
         label.text = "kgs".uppercased()
-        label.textColor = .lightGray
+        label.textColor = #colorLiteral(red: 0.8350862509, green: 0.8350862509, blue: 0.8350862509, alpha: 1)
         label.textAlignment = .left
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "OpenSansRoman-SemiBold", size: 18)
         return label
     }()
 
     private var sellRateLabel: UILabel = {
         let label = UILabel()
         label.text = "0.00"
-        label.textColor = .lightGray
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont(name: "Montserrat-Light", size: 15)
         return label
     }()
     
     private var buyRateLabel: UILabel = {
         let label = UILabel()
         label.text = "0.00"
-        label.textColor = .lightGray
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont(name: "Montserrat-Light", size: 15)
         return label
     }()
 
     private var countryImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "kgs")
-        imageView.layer.cornerRadius = 45/2
+        imageView.layer.cornerRadius = 40/2
         imageView.clipsToBounds = true
         imageView.backgroundColor = .orange
         return imageView
@@ -85,14 +85,14 @@ class RateCell: UITableViewCell {
             countryImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             countryImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 0
             ),
-            countryImage.heightAnchor.constraint(equalToConstant: 45),
-            countryImage.widthAnchor.constraint(equalToConstant: 45)
+            countryImage.heightAnchor.constraint(equalToConstant: 40),
+            countryImage.widthAnchor.constraint(equalToConstant: 40)
         ])
         
         addSubview(valuteNameLabel)
         NSLayoutConstraint.activate([
             valuteNameLabel.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor),
-            valuteNameLabel.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 5),
+            valuteNameLabel.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 15),
             valuteNameLabel.rightAnchor.constraint(equalTo: centerXAnchor, constant: -10)
         ])
         

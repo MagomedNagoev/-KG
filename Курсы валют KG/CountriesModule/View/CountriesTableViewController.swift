@@ -19,7 +19,8 @@ class CountriesTableViewController: UITableViewController {
     func configUI() {
         
         let backButton = UIBarButtonItem()
-        backButton.title = "Назад"
+        backButton.tintColor = .white
+        backButton.title = ""
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         tableView.register(CountryCell.self, forCellReuseIdentifier: CountryCell.identifier)

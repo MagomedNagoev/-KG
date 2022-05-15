@@ -12,10 +12,27 @@ class MainViewController: UIViewController {
     var tableView = UITableView()
     private var buyLabel: UILabel = {
         let label = UILabel()
-        label.text = "покупка"
+        label.text = "Покупка"
         label.textColor = .lightGray
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont(name: "OpenSans-Regular", size: 15)
+        return label
+    }()
+    
+    private var sellLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Продажа"
+        label.textColor = .lightGray
+        label.textAlignment = .left
+        label.font = UIFont(name: "OpenSans-Regular", size: 15)
+        return label
+    }()
+    
+    private var dateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = #colorLiteral(red: 0.9593981032, green: 0.9593981032, blue: 0.9593981032, alpha: 1)
+        label.textAlignment = .left
+        label.font = UIFont(name: "OpenSans-Regular", size: 15)
         return label
     }()
     
@@ -32,33 +49,19 @@ class MainViewController: UIViewController {
     private var swipeButton: UIButton = {
       let button = UIButton()
         button.addTarget(self, action: #selector(swipeCurrency), for: .touchUpInside)
-        button.setImage(UIImage.init(systemName: "arrow.up.arrow.down"), for: .normal)
+        
+        let configuration = UIImage.SymbolConfiguration(pointSize: 14, weight: .light, scale: .large)
+        let image = UIImage(systemName: "arrow.up.arrow.down", withConfiguration: configuration)?.withTintColor(#colorLiteral(red: 0.8476145864, green: 0.8476145864, blue: 0.8476145864, alpha: 1), renderingMode: .alwaysOriginal)
+        button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 55).isActive = true
         return button
     }()
     
     
     private var secondCurrencyView = CurrencyView(valuteName: "usd", valuteFullname: "Американский доллар", numberCountry: "Second", countryRow: 1)
     private var firstCurrencyView = CurrencyView(valuteName: "kgs", valuteFullname: "Киргизский сом", numberCountry: "First", countryRow: 0)
-    
-    private var sellLabel: UILabel = {
-        let label = UILabel()
-        label.text = "продажа"
-        label.textColor = .lightGray
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 15)
-        return label
-    }()
-    
-    private var dateLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .lightGray
-        label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 15)
-        return label
-    }()
 
     
     override func viewDidLoad() {
@@ -68,8 +71,10 @@ class MainViewController: UIViewController {
                                        green: 52/255,
                                        blue: 52/255,
                                        alpha: 1)
-        
-        
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
         hideKeyboardOnTap()
     }
     
@@ -121,34 +126,33 @@ class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             greyView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             greyView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            greyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-            greyView.bottomAnchor.constraint(equalTo: greyView.topAnchor, constant: 190)
+            greyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            greyView.bottomAnchor.constraint(equalTo: greyView.topAnchor, constant: 240)
             
         ])
         
         view.addSubview(secondCurrencyView)
         NSLayoutConstraint.activate([
-            secondCurrencyView.rightAnchor.constraint(equalTo: greyView.rightAnchor, constant: -5),
-            secondCurrencyView.leftAnchor.constraint(equalTo: greyView.leftAnchor, constant: 5),
-            secondCurrencyView.topAnchor.constraint(equalTo: greyView.topAnchor, constant: 5),
-            secondCurrencyView.bottomAnchor.constraint(equalTo: secondCurrencyView.topAnchor, constant: 65)
+            secondCurrencyView.rightAnchor.constraint(equalTo: greyView.rightAnchor, constant: -10),
+            secondCurrencyView.leftAnchor.constraint(equalTo: greyView.leftAnchor, constant: 10),
+            secondCurrencyView.topAnchor.constraint(equalTo: greyView.topAnchor, constant: 12),
+            secondCurrencyView.bottomAnchor.constraint(equalTo: secondCurrencyView.topAnchor, constant: 80)
             
         ])
         
         view.addSubview(swipeButton)
         NSLayoutConstraint.activate([
-            swipeButton.centerXAnchor.constraint(equalTo: greyView.leftAnchor, constant: 27.5),
-            swipeButton.topAnchor.constraint(equalTo: secondCurrencyView.bottomAnchor, constant: 0),
-            swipeButton.bottomAnchor.constraint(equalTo: swipeButton.topAnchor, constant: 50)
+            swipeButton.leftAnchor.constraint(equalTo: greyView.leftAnchor, constant: 0),
+            swipeButton.topAnchor.constraint(equalTo: secondCurrencyView.bottomAnchor, constant: 0)
             
         ])
         
         view.addSubview(firstCurrencyView)
         NSLayoutConstraint.activate([
-            firstCurrencyView.rightAnchor.constraint(equalTo: greyView.rightAnchor, constant: -5),
-            firstCurrencyView.leftAnchor.constraint(equalTo: greyView.leftAnchor, constant: 5),
-            firstCurrencyView.topAnchor.constraint(equalTo: swipeButton.bottomAnchor, constant: -5),
-            firstCurrencyView.bottomAnchor.constraint(equalTo: firstCurrencyView.topAnchor, constant: 65)
+            firstCurrencyView.rightAnchor.constraint(equalTo: secondCurrencyView.rightAnchor, constant: 0),
+            firstCurrencyView.leftAnchor.constraint(equalTo: secondCurrencyView.leftAnchor, constant: 0),
+            firstCurrencyView.topAnchor.constraint(equalTo: swipeButton.bottomAnchor, constant: 6),
+            firstCurrencyView.bottomAnchor.constraint(equalTo: firstCurrencyView.topAnchor, constant: 80)
             
         ])
         
@@ -156,18 +160,10 @@ class MainViewController: UIViewController {
         view.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
+            stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
             stackView.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
-            stackView.topAnchor.constraint(equalTo: greyView.bottomAnchor, constant: 0),
+            stackView.topAnchor.constraint(equalTo: greyView.bottomAnchor, constant: 22),
             stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.04)
-        ])
-        
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -25),
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 25)
         ])
         
         view.addSubview(dateLabel)
@@ -175,11 +171,16 @@ class MainViewController: UIViewController {
             dateLabel.heightAnchor.constraint(equalToConstant: 18),
             dateLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 0),
             dateLabel.rightAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
-            dateLabel.leftAnchor.constraint(equalTo: tableView.leftAnchor, constant: 0)
+            dateLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30)
         ])
         
-        
-        
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            tableView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
+            tableView.leftAnchor.constraint(equalTo: dateLabel.leftAnchor, constant: 0)
+        ])
     }
     
     func hideKeyboardOnTap() {
@@ -232,11 +233,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 extension MainViewController: MainViewProtocol {
     func calculateSums(numberCountry: String) {
         if numberCountry == "First" {
-            print("calculate for first")
             secondCurrencyView.sumTextField.text = presenter.calculate(amountString: firstCurrencyView.sumTextField.text ?? "0.00", fromCountry: firstCurrencyView.countryRow, toCountry: secondCurrencyView.countryRow, viewCountry: "Second")
             secondCurrencyView.amount = 0
         } else {
-            print("calculate for second")
             firstCurrencyView.sumTextField.text = presenter.calculate(amountString: secondCurrencyView.sumTextField.text ?? "0.00", fromCountry: secondCurrencyView.countryRow, toCountry: firstCurrencyView.countryRow, viewCountry: "First")
             firstCurrencyView.amount = 0
         }
