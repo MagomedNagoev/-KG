@@ -24,7 +24,7 @@ class CountryCell: UITableViewCell {
         label.text = "Киргизский сом"
         label.textColor = .lightGray
         label.textAlignment = .left
-        label.font = UIFont(name: "OpenSans-Regular", size: 16)
+        label.font = UIFont(name: "Montserrat-Regular", size: 16)
         return label
     }()
 
@@ -65,7 +65,8 @@ class CountryCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = .white
+        line.backgroundColor = #colorLiteral(red: 0.7729910436, green: 0.7729910436, blue: 0.7729910436, alpha: 1)
+        line.alpha = 0.2
         
         addSubview(stackView)
         NSLayoutConstraint.activate([

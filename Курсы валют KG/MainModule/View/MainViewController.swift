@@ -30,9 +30,9 @@ class MainViewController: UIViewController {
     
     private var dateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = #colorLiteral(red: 0.9593981032, green: 0.9593981032, blue: 0.9593981032, alpha: 1)
+        label.textColor = .lightGray
         label.textAlignment = .left
-        label.font = UIFont(name: "OpenSans-Regular", size: 15)
+        label.font = UIFont(name: "OpenSans-Regular", size: 16)
         return label
     }()
     

@@ -72,7 +72,8 @@ class RateCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = .white
+        line.backgroundColor = #colorLiteral(red: 0.7729910436, green: 0.7729910436, blue: 0.7729910436, alpha: 1)
+        line.alpha = 0.2
         
 
         stackView.addArrangedSubview(buyRateLabel)
@@ -98,7 +99,7 @@ class RateCell: UITableViewCell {
         
         addSubview(line)
         NSLayoutConstraint.activate([
-            line.heightAnchor.constraint(equalToConstant: 0.5),
+            line.topAnchor.constraint(equalTo: bottomAnchor, constant: -0.5),
             line.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
             line.leftAnchor.constraint(equalTo: valuteNameLabel.leftAnchor,constant: 0),
             line.bottomAnchor.constraint(equalTo: bottomAnchor)

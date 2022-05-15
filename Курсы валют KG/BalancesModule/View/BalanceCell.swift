@@ -53,8 +53,8 @@ class BalanceCell: UITableViewCell {
         amountTextField.translatesAutoresizingMaskIntoConstraints = false
         
         line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = .white
-        
+        line.backgroundColor = #colorLiteral(red: 0.7729910436, green: 0.7729910436, blue: 0.7729910436, alpha: 1)
+        line.alpha = 0.2
         
         addSubview(countryImage)
         

@@ -87,7 +87,6 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
     }
     
     func UIconfig() {
-        
         view.backgroundColor = UIColor(red: 52/255,
                                        green: 52/255,
                                        blue: 52/255,

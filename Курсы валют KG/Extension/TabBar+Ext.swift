@@ -14,7 +14,7 @@ extension UITabBarController {
         let splashView = LaunchView()
         self.tabBar.backgroundColor = #colorLiteral(red: 0.203900069, green: 0.2039352655, blue: 0.2038924694, alpha: 1)
         self.tabBar.barStyle = .black
-        self.tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.tabBar.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         let a = UIImageView()
         a.backgroundColor = .yellow
         self.tabBar.selectionIndicatorImage = a.image
