@@ -15,7 +15,7 @@ class CurrencyView: UIView {
             setData2(indexCountry: newValue)
         }
         didSet {
-            presenter.view?.calculateSums(numberCountry: numberCountry)
+            presenter.view?.calculateSums(numberCountry: "Second")
         }
     }
     var numberCountry = ""
