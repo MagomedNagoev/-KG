@@ -13,7 +13,7 @@ protocol NetworkServiceProtocol {
 
 class NetworkService: NetworkServiceProtocol {
     func getComments(completion: @escaping (Result<AllData?, Error>) -> Void) {
-        let urlString = "https://api.jsonbin.io/b/6277d8af25069545a32f2fb4/2"
+        let urlString = "https://valuta.kg/api/rate/average.json"
         guard let url = URL(string: urlString) else {return}
         if let cachedRates = getCachedData(from: url) {
             completion(.success(cachedRates))
