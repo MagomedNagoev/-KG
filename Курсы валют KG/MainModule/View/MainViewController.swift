@@ -71,10 +71,10 @@ class MainViewController: UIViewController {
                                        green: 52/255,
                                        blue: 52/255,
                                        alpha: 1)
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
+//        for family in UIFont.familyNames.sorted() {
+//            let names = UIFont.fontNames(forFamilyName: family)
+//            print("Family: \(family) Font names: \(names)")
+//        }
         hideKeyboardOnTap()
     }
     

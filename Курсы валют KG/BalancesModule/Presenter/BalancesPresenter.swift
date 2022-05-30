@@ -47,7 +47,7 @@ class BalancesPresenter: BalancesPresenterProtocol {
     }
     
     func getData() {
-        networkService.getComments { [weak self] result in
+        networkService.getAllData { [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 switch result {

@@ -8,11 +8,11 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getComments(completion: @escaping (Result<AllData?, Error>) -> Void)
+    func getAllData(completion: @escaping (Result<AllData?, Error>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
-    func getComments(completion: @escaping (Result<AllData?, Error>) -> Void) {
+    func getAllData(completion: @escaping (Result<AllData?, Error>) -> Void) {
         let urlString = "https://valuta.kg/api/rate/average.json"
         guard let url = URL(string: urlString) else {return}
         if let cachedRates = getCachedData(from: url) {
@@ -22,10 +22,7 @@ class NetworkService: NetworkServiceProtocol {
             guard let data = data, let response = response else {
                 return
             }
-//            let urlRequest = URLRequest(url: url)
-//            let cachedURLResponse = CachedURLResponse(response: response, data: data, userInfo: nil, storagePolicy: .allowed)
-//            URLCache.shared.storeCachedResponse(cachedURLResponse, for: urlRequest)
-
+            
             do {
                 let obj = try JSONDecoder().decode(AllData.self, from: data)
                 self.saveDataToCache(with: data, and: response)

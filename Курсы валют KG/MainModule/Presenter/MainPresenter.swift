@@ -15,12 +15,8 @@ protocol MainViewProtocol: class {
 
 protocol MainPresenterProtocol: class {
     var valutes: [Valute]? { get set }
-    var amount: Int { get set }
-    var countryRows: (Int, Int) { get set }
     var view: MainViewProtocol? { get set }
     func getRates()
-    func convertIntSum(amountString: String, currency: String, selectedSegmentIndex: Int) -> String
-    func convertKgsSum(amountString: String, currency: String, selectedSegmentIndex: Int) -> String
     func getRatesWoKgs() -> [Valute]?
     func getDate() -> String
     func calculate(amountString: String,
@@ -47,40 +43,14 @@ class MainPresenter: MainPresenterProtocol {
         getRates()
     }
     
-    public func convertIntSum(amountString: String, currency: String, selectedSegmentIndex: Int) -> String {
-        var sum = 0.00
-        let amount = Double(amountString.filter {$0 != ","}) ?? 0.00
-        guard let valute = valutes?.filter({ $0.titleAlias == currency }).first  else { return "\(sum)" }
-        if selectedSegmentIndex == 0 {
-            sum = amount * (Double(valute.rates?.sellRate ?? "") ?? 0.00) * 100
-        } else {
-            sum = amount * (Double(valute.rates?.buyRate ?? "") ?? 0.00) * 100
-        }
-        
-        return "\(sum)".asCurrency(locale: Locale.current) ?? ""
-    }
-    
-    public func convertKgsSum(amountString: String, currency: String, selectedSegmentIndex: Int) -> String {
-        var sum = 0.00
-        let amount = Double(amountString.filter {$0 != ","}) ?? 0.00
-        guard let valute = valutes?.filter({ $0.titleAlias == currency }).first  else { return "\(sum)" }
-        if selectedSegmentIndex == 0 {
-            sum = amount / (Double(valute.rates?.sellRate ?? "") ?? 0.00) * 100
-        } else {
-            sum = amount / (Double(valute.rates?.buyRate ?? "") ?? 0.00) * 100
-        }
-        
-        return "\(sum)".asCurrency(locale: Locale.current) ?? ""
-    }
-    
     func getRatesWoKgs() -> [Valute]? {
         let valutes = self.valutes?.filter({$0.titleAlias != "kgs"})
         return valutes
     }
     
     func getRates() {
-        networkService.getComments { [weak self] result in
-            guard let self = self else {return}
+        networkService.getAllData { [weak self] result in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let dataValutes):
