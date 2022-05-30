@@ -45,14 +45,8 @@ class MainPresenterTest: XCTestCase {
     var router: RouterProtocol!
     
     override func setUp() {
-        let rates = Rates(buyRate: "1", sellRate: "1", dateStart: "2022-06-15 13:12:06")
-        let valute = Valute(title: "Baz", titleAlias: "Bar", id: "1", rates: rates)
-        let valutes = [valute,valute]
-        let data = ["Bof" : valutes[0], "Bod" : valutes[1]]
-        let allData = AllData(error: false, message: "Foo", data: data)
-        networkService = MockNetworkService(allData: allData)
-        presenter = MainPresenter(view: view, networkService: networkService, router: router)
-        presenter.valutes = valutes
+ 
+        
     }
     
     override func setUpWithError() throws {
@@ -70,7 +64,16 @@ class MainPresenterTest: XCTestCase {
     }
     
     func testGetSuccessData() {
+        let rates = Rates(buyRate: "1", sellRate: "1", dateStart: "2022-06-15 13:12:06")
+        let valute = Valute(title: "Baz", titleAlias: "Bar", id: "1", rates: rates)
+        let valutes = [valute,valute]
+        let data = ["Bof" : valutes[0], "Bod" : valutes[1]]
+        let allData = AllData(error: false, message: "Foo", data: data)
         var catchData: AllData?
+        
+        networkService = MockNetworkService(allData: allData)
+        presenter = MainPresenter(view: view, networkService: networkService, router: router)
+        presenter.valutes = valutes
         
         networkService?.getAllData { result in
             switch result {
@@ -87,21 +90,70 @@ class MainPresenterTest: XCTestCase {
     }
     
     func testCalculate() {
+        let rates = Rates(buyRate: "1", sellRate: "2", dateStart: "2022-06-15 13:12:06")
+        let valute = Valute(title: "Baz", titleAlias: "Bar", id: "1", rates: rates)
+        let valutes = [valute,valute]
+        let data = ["Bof" : valutes[0], "Bod" : valutes[1]]
+        let allData = AllData(error: false, message: "Foo", data: data)
+        
+        networkService = MockNetworkService(allData: allData)
+        presenter = MainPresenter(view: view, networkService: networkService, router: router)
+        presenter.valutes = valutes
+        
         let sum = presenter.calculate(amountString: "100", fromCountry: 0, toCountry: 1, viewCountry: "First")
-        guard let sumDouble = Double(sum) else {
+        let sum1 = presenter.calculate(amountString: "100", fromCountry: 0, toCountry: 1, viewCountry: "Second")
+        guard let sumDouble = Double(sum),let sum1Double = Double(sum1) else {
             XCTFail()
             return
         }
         XCTAssertNotNil(sum)
         XCTAssertNotEqual(sumDouble, 0.0)
+        XCTAssertEqual(sumDouble, 50.0)
+        
+        XCTAssertNotNil(sum1)
+        XCTAssertNotEqual(sum1Double, 0.0)
+        XCTAssertEqual(sum1Double, 200.0)
     }
     
-    func testFailCalculate() {
-        let sum = presenter.calculate(amountString: "0", fromCountry: 0, toCountry: 1, viewCountry: "First")
+    func testNilDataToCalculate() {
+
+        networkService = MockNetworkService(allData: AllData(error: nil, message: nil, data: nil))
+        presenter = MainPresenter(view: view, networkService: networkService, router: router)
+        
+        let sum = presenter.calculate(amountString: "1", fromCountry: 0, toCountry: 1, viewCountry: "Second")
+        
+        XCTAssertNotNil(sum)
         guard let sumDouble = Double(sum) else {
             XCTFail()
             return
         }
         XCTAssertEqual(sumDouble, 0.0)
+    }
+    
+    func testRatesToCalculate() {
+        let rates = Rates(buyRate: "Baz", sellRate: "Baz", dateStart: "2022-06-15 13:12:06")
+        let valute = Valute(title: "Baz", titleAlias: "Bar", id: "1", rates: rates)
+        let valutes = [valute,valute]
+        let data = ["Bof" : valutes[0], "Bod" : valutes[1]]
+        let allData = AllData(error: false, message: "Foo", data: data)
+        
+        networkService = MockNetworkService(allData: allData)
+        presenter = MainPresenter(view: view, networkService: networkService, router: router)
+        presenter.valutes = valutes
+        
+        let sum = presenter.calculate(amountString: "100,000", fromCountry: 0, toCountry: 1, viewCountry: "Second")
+
+        XCTAssertNotNil(sum)
+
+    }
+    
+    func testStringSumToCalculate() {
+
+        networkService = MockNetworkService(allData: AllData(error: nil, message: nil, data: nil))
+        presenter = MainPresenter(view: view, networkService: networkService, router: router)
+        
+        let sum = presenter.calculate(amountString: "werwer", fromCountry: 0, toCountry: 1, viewCountry: "Second")
+        
+        XCTAssertNotNil(sum)
     }
 }

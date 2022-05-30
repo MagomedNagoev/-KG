@@ -28,9 +28,9 @@ class CurrencyTextField: UITextField {
         textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         contentVerticalAlignment = .center
         textAlignment = .right
-
-        let colorPlaceholderText = NSAttributedString(string: "0.00",
-                                                    attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)])
+        let zeroString = Formatter.currency.string(from: 0.0)!
+        let colorPlaceholderText = NSAttributedString(string: zeroString,
+                                                    attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)])
         attributedPlaceholder = colorPlaceholderText
     }
 }
@@ -40,6 +40,7 @@ extension Formatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencySymbol = ""
+        formatter.locale = Locale(identifier: "ru_RU")
         return formatter
     }()
     
@@ -59,5 +60,13 @@ extension String {
         } else {
             return Formatter.currency.string(from: NSNumber(value: (Double(self) ?? 0) / 100))
         }
+    }
+    
+    func removeFormatAmount() -> Double {
+        let nsNumber = Formatter.currency.number(from: self)
+        if let nsNumber = nsNumber {
+            return Double(truncating: nsNumber)
+        }
+        return 0.0
     }
 }

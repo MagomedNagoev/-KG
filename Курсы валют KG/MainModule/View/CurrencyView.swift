@@ -193,6 +193,9 @@ extension CurrencyView: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let digit = Int(string) {
+            if amount > 9_999_999_999 {
+                return false
+            }
             amount = amount * 10 + digit
             sumTextField.text = updateTextField()
         }

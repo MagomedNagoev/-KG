@@ -32,6 +32,7 @@
 		1B6B8532282FF56E00BFDC8F /* TabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B8531282FF56E00BFDC8F /* TabBar+Ext.swift */; };
 		1B6B8537282FF67D00BFDC8F /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B8536282FF67D00BFDC8F /* LaunchView.swift */; };
 		1B7C2CDC280AEA5700A187E6 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C2CDB280AEA5700A187E6 /* CountryCell.swift */; };
+		1B81149C2844F4E80064C67D /* BalancesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B81149B2844F4E80064C67D /* BalancesPresenter.swift */; };
 		1B825C1F27E5096C001E2A59 /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B825C1E27E5096C001E2A59 /* RateCell.swift */; };
 		1B825C5627E730DB001E2A59 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B825C5527E730DB001E2A59 /* CurrencyView.swift */; };
 		1B83D3512819549F00CE739E /* Rate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B83D34F2819549F00CE739E /* Rate+CoreDataClass.swift */; };
@@ -91,6 +92,7 @@
 		1B6B8531282FF56E00BFDC8F /* TabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Ext.swift"; sourceTree = "<group>"; };
 		1B6B8536282FF67D00BFDC8F /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		1B7C2CDB280AEA5700A187E6 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
+		1B81149B2844F4E80064C67D /* BalancesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesPresenter.swift; sourceTree = "<group>"; };
 		1B825C1E27E5096C001E2A59 /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
 		1B825C5527E730DB001E2A59 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		1B83D34F2819549F00CE739E /* Rate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				1B667C7C2843B63600C601FF /* TestMainModule */,
 				1B55F21927E4F5DC00C9787B /* Info.plist */,
+				1B8114A02844F4F50064C67D /* TestBalancesModule */,
 			);
 			path = "Курсы валют KGTests";
 			sourceTree = "<group>";
@@ -303,6 +306,14 @@
 				1B3040322840BC0500859FA8 /* OpenSans.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1B8114A02844F4F50064C67D /* TestBalancesModule */ = {
+			isa = PBXGroup;
+			children = (
+				1B81149B2844F4E80064C67D /* BalancesPresenter.swift */,
+			);
+			path = TestBalancesModule;
 			sourceTree = "<group>";
 		};
 		1B98D503280840A000B29C56 /* CountriesModule */ = {
@@ -505,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B55F21827E4F5DC00C9787B /* MainPresenterTest.swift in Sources */,
+				1B81149C2844F4E80064C67D /* BalancesPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +672,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Magomed.Nagoev.------------KG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -679,6 +692,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Magomed.Nagoev.------------KG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -699,6 +713,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Magomed.Nagoev.------------KGTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -720,6 +735,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Magomed.Nagoev.------------KGTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -739,6 +755,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Magomed.Nagoev.------------KGUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -758,6 +775,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "Magomed.Nagoev.------------KGUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

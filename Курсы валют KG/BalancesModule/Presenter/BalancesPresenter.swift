@@ -94,21 +94,22 @@ class BalancesPresenter: BalancesPresenterProtocol {
     
     func summuriseValute() -> String {
         var sum = 0.00
+        let kgsSum = "\(String(describing: Formatter.currency.string(from: NSNumber(value: sum)))) KGS"
         guard let valutes = valutes else { print("Valutes is nil")
-            return "0.00" }
+            return kgsSum }
         
         guard let titleLabelValute = valutes[index].titleAlias,
               let sellRateString = valutes[index].rates?.sellRate,
               let sellLabelRate = Double(sellRateString) else {
-            return "0.00 KGS"
+            return kgsSum
         }
         
         let rates = getRates()
         for rate in rates {
             for valute in valutes {
-                if let amountString = rate.amount?.filter({$0 != ","}),
-                   let amount = Double(amountString),
-                   let sellRate = Double(valute.rates?.buyRate ?? "1"),
+                if let amount = rate.amount?.removeFormatAmount(),
+                   let sellRateString = valute.rates?.buyRate,
+                   let sellRate = Double(sellRateString),
                    rate.country == valute.titleAlias {
                     if valute.titleAlias == titleLabelValute {
                         sum += amount
@@ -122,9 +123,10 @@ class BalancesPresenter: BalancesPresenterProtocol {
         
         guard let sumString = Formatter.currency.string(from: NSNumber(value: sum)),
               let titleAlias = valutes[index].titleAlias?.uppercased()
-              else { return "0.00 KGS" }
+              else { return kgsSum }
         
         let equivalentSum = sumString + " " + titleAlias
+
         return  equivalentSum
         
     }

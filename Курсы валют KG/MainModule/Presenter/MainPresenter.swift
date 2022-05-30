@@ -84,17 +84,21 @@ class MainPresenter: MainPresenterProtocol {
     func calculate(amountString: String,
                    fromCountry: Int,
                    toCountry: Int, viewCountry: String) -> String {
-        guard var sum = Double(amountString.filter({$0 != ","})) else {
-            return ""
-        }
+        var sum = amountString.removeFormatAmount()
+        let zeroString = Formatter.currency.string(from: 0)!
         guard let valutes = valutes else { print("Valutes is nil")
-            return "0.00" }
+            return zeroString }
         if let valuteFromCountry = valutes[fromCountry].rates,
            let valuteToCountry = valutes[toCountry].rates,
-           let buyRateFromCountry = Double(valuteFromCountry.buyRate ?? "0.00"),
-           let sellRateFromCountry = Double(valuteFromCountry.sellRate ?? "0.00"),
-           let sellRateToCountry = Double(valuteToCountry.sellRate ?? "0.00"),
-           let buyRateToCountry = Double(valuteToCountry.buyRate ?? "0.00") {
+           let buyRateFromCountryString = valuteFromCountry.buyRate,
+           let sellRateFromCountryString = valuteFromCountry.sellRate,
+           let sellRateToCountryString = valuteToCountry.sellRate,
+           let buyRateToCountryString = valuteToCountry.buyRate,
+           let buyRateFromCountry = Double(buyRateFromCountryString),
+           let sellRateFromCountry = Double(sellRateFromCountryString),
+           let sellRateToCountry = Double(sellRateToCountryString),
+           let buyRateToCountry = Double(buyRateToCountryString) {
+            print("Debug: ",buyRateFromCountry,sellRateFromCountry,sellRateToCountry,buyRateToCountry)
             if viewCountry == "First" {
                 sum = sum * buyRateFromCountry / sellRateToCountry
             } else {
@@ -102,8 +106,9 @@ class MainPresenter: MainPresenterProtocol {
             }
         }
         
-        let sumString = Formatter.currency.string(from: NSNumber(value: sum)) ?? "0.00"
-        return  sumString
+        let sumString = Formatter.currency.string(from: NSNumber(value: sum))
+        guard let sumStr = sumString else { return zeroString }
+        return  sumStr
     }
 
     

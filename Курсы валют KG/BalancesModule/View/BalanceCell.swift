@@ -96,7 +96,7 @@ class BalanceCell: UITableViewCell {
     }
 
     func setData(nameValute: String?, amount: String?, presenter: BalancesPresenterProtocol, index: IndexPath) {
-        self.amount = Int(amount?.filter {$0 != "," && $0 != "."} ?? "") ?? 0
+        self.amount = Int(amount?.filter {$0 != "," && $0 != "." && $0 != " "} ?? "") ?? 0
         valuteNameLabel.text = nameValute?.uppercased()
         countryImage.image = UIImage(named: nameValute ?? "kgs")
         amountTextField.text = updateTextField()
@@ -108,7 +108,7 @@ class BalanceCell: UITableViewCell {
         if let presenter = presenter {
         let rate = presenter.getRate(index: index)
             rate.amount = updateTextField()
-        presenter.saveRate()
+            presenter.saveRate()
             presenter.view?.labelRefresh()
         }
     }
@@ -122,6 +122,9 @@ class BalanceCell: UITableViewCell {
 extension BalanceCell: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let digit = Int(string) {
+            if amount > 9_999_999_999 {
+                return false
+            }
             amount = amount * 10 + digit
             amountTextField.text = updateTextField()
         }

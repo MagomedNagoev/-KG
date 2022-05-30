@@ -9,6 +9,7 @@ import UIKit
 
 class RateCell: UITableViewCell {
     static let identifier = "RateCell"
+    var language = "rus"
 
     private var valuteNameLabel: UILabel = {
         let label = UILabel()
@@ -21,7 +22,6 @@ class RateCell: UITableViewCell {
 
     private var sellRateLabel: UILabel = {
         let label = UILabel()
-        label.text = "0.00"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .left
         label.font = UIFont(name: "Montserrat-Light", size: 15)
@@ -30,7 +30,6 @@ class RateCell: UITableViewCell {
     
     private var buyRateLabel: UILabel = {
         let label = UILabel()
-        label.text = "0.00"
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.textAlignment = .left
         label.font = UIFont(name: "Montserrat-Light", size: 15)
@@ -120,9 +119,17 @@ class RateCell: UITableViewCell {
     }
 
     func setData(nameValute: String?, sellRate: String?, buyRate: String?) {
+        if language == "rus", let sellRate = sellRate, let buyRate = buyRate {
+            let sellRateRus = String(sellRate.map {$0 == "." ? "," : $0})
+            let buyRateRus = String(buyRate.map {$0 == "." ? "," : $0})
+            sellRateLabel.text = sellRateRus
+            buyRateLabel.text = buyRateRus
+        } else {
+            sellRateLabel.text = sellRate
+            buyRateLabel.text = buyRate
+        }
+        
         valuteNameLabel.text = nameValute?.uppercased()
-        sellRateLabel.text = sellRate
-        buyRateLabel.text = buyRate
         countryImage.image = UIImage(named: nameValute ?? "kgs")
     }
 
