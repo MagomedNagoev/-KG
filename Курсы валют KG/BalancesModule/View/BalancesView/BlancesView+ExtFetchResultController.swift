@@ -37,7 +37,7 @@ extension BalancesViewController: NSFetchedResultsControllerDelegate {
             }
         case .update:
             if let indexPath = indexPath {
-                let rate = presenter.getRate(index: indexPath)
+                let rate = presenter.getRates()[indexPath.row]
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: BalanceCell.identifier, for: indexPath) as? BalanceCell else {
                     return
                 }
