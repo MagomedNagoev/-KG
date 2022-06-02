@@ -40,7 +40,8 @@ extension Formatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencySymbol = ""
-        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.currencyDecimalSeparator = ","
+        formatter.currencyGroupingSeparator = " "
         return formatter
     }()
     
@@ -53,8 +54,7 @@ extension Formatter {
 }
 
 extension String {
-    func asCurrency(locale: Locale) -> String? {
-        Formatter.currency.locale = locale
+    func asCurrency() -> String? {
         if self.isEmpty {
             return Formatter.currency.string(from: NSNumber(value: 0))
         } else {
