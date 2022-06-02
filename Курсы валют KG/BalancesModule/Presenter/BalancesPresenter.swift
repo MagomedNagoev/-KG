@@ -24,7 +24,6 @@ protocol BalancesPresenterProtocol: class {
     func getRates() -> [Rate]
     func saveRate()
     func deleteRate(index: IndexPath)
-    func getRate(index: IndexPath) -> Rate
     func resultController() -> Any
     func tapOntheCountry()
     func summuriseValute() -> String
@@ -77,15 +76,11 @@ class BalancesPresenter: BalancesPresenterProtocol {
     }
     
     func saveRate() {
-        storeManager.saveContext(context: storeManager.mainContext)
+        storeManager.saveContext(storeManager.mainContext)
     }
     
     func deleteRate(index: IndexPath) {
         storeManager.deleteRate(index: index)
-    }
-    
-    func getRate(index: IndexPath) -> Rate {
-        return storeManager.getRate(index: index)
     }
     
     func tapOntheCountry() {
