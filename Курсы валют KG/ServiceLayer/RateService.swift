@@ -9,7 +9,8 @@ import Foundation
 import CoreData
 
 protocol RateServiceProtocol {
-    func addRate (name: String, amount: String)
+    @discardableResult
+    func addRate (name: String, amount: String) -> Rate
     func deleteRate(rate: Rate)
     func getRates() -> [Rate]?
 }
@@ -24,19 +25,21 @@ class RateService: RateServiceProtocol {
         self.managedObjectContext = managedObjectContext
         self.dataStoreManager = dataStoreManager
     }
-
-    public func addRate (name: String, amount: String) {
+    
+    @discardableResult
+    public func addRate (name: String, amount: String) -> Rate {
         let rate = Rate(context: managedObjectContext)
         rate.date = Date()
         rate.amount = amount
         rate.country = name
-        dataStoreManager.saveContext(context: managedObjectContext)
+        dataStoreManager.saveContext(managedObjectContext)
+        return rate
     }
     
     
     func deleteRate(rate: Rate) {
         managedObjectContext.delete(rate)
-        dataStoreManager.saveContext(context: managedObjectContext)
+        dataStoreManager.saveContext(managedObjectContext)
     }
     
     func getRates() -> [Rate]? {
