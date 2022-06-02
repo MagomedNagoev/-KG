@@ -8,13 +8,11 @@
 import UIKit
 
 protocol CountriesViewProtocol: class {
-    func setCountries(valutes: [Valute]?)
 }
 
 protocol CountriesPresenterProtocol {
     var valutes: [Valute]? { get set }
     init(view: CountriesViewProtocol, router: RouterProtocol, rateService: RateServiceProtocol, valutes: [Valute]?)
-    func setCountries()
     func tap()
     func addRate(name: String, amount: String)
 }
@@ -30,10 +28,6 @@ class CountriesPresenter: CountriesPresenterProtocol {
         self.router = router
         self.valutes = valutes
         self.rateService = rateService
-    }
-    
-    func setCountries() {
-        view?.setCountries(valutes: valutes)
     }
     
     func tap() {
