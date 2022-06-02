@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import Курсы_валют_KG
 
 class MockView: MainViewProtocol {
@@ -18,24 +19,6 @@ class MockView: MainViewProtocol {
     func calculateSums(numberCountry: String) {
     }
     
-}
-
-class MockNetworkService: NetworkServiceProtocol {
-    var allData: AllData?
-    init() {}
-    convenience init(allData: AllData) {
-        self.init()
-        self.allData = allData
-    }
-
-    func getAllData(completion: @escaping (Result<AllData?, Error>) -> Void) {
-        if let allData = allData {
-            completion(.success(allData))
-        } else {
-            let error = NSError(domain: "", code: 0, userInfo: nil)
-            completion(.failure(error))
-        }
-    }
 }
 
 class MainPresenterTest: XCTestCase {
@@ -102,10 +85,8 @@ class MainPresenterTest: XCTestCase {
         
         let sum = presenter.calculate(amountString: "100", fromCountry: 0, toCountry: 1, viewCountry: "First")
         let sum1 = presenter.calculate(amountString: "100", fromCountry: 0, toCountry: 1, viewCountry: "Second")
-        guard let sumDouble = Double(sum),let sum1Double = Double(sum1) else {
-            XCTFail()
-            return
-        }
+        let sumDouble = sum.removeFormatAmount()
+        let sum1Double = sum1.removeFormatAmount()
         XCTAssertNotNil(sum)
         XCTAssertNotEqual(sumDouble, 0.0)
         XCTAssertEqual(sumDouble, 50.0)
@@ -123,10 +104,7 @@ class MainPresenterTest: XCTestCase {
         let sum = presenter.calculate(amountString: "1", fromCountry: 0, toCountry: 1, viewCountry: "Second")
         
         XCTAssertNotNil(sum)
-        guard let sumDouble = Double(sum) else {
-            XCTFail()
-            return
-        }
+        let sumDouble = sum.removeFormatAmount()
         XCTAssertEqual(sumDouble, 0.0)
     }
     
@@ -141,7 +119,9 @@ class MainPresenterTest: XCTestCase {
         presenter = MainPresenter(view: view, networkService: networkService, router: router)
         presenter.valutes = valutes
         
-        let sum = presenter.calculate(amountString: "100,000", fromCountry: 0, toCountry: 1, viewCountry: "Second")
+        let amountString = "10000000".asCurrency()!
+        
+        let sum = presenter.calculate(amountString: amountString, fromCountry: 0, toCountry: 1, viewCountry: "Second")
 
         XCTAssertNotNil(sum)
 
