@@ -24,6 +24,7 @@ class BalanceCell: UITableViewCell {
 
     var amountTextField: CurrencyTextField = {
         let textField = CurrencyTextField()
+        textField.accessibilityIdentifier = "AmountTextField"
         return textField
     }()
 
@@ -106,7 +107,7 @@ class BalanceCell: UITableViewCell {
 
     @objc func editRate() {
         if let presenter = presenter {
-        let rate = presenter.getRate(index: index)
+            let rate = presenter.getRates()[index.row]
             rate.amount = updateTextField()
             presenter.saveRate()
             presenter.view?.labelRefresh()

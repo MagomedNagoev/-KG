@@ -9,13 +9,15 @@ import UIKit
 import CoreData
 
 class BalancesViewController: UIViewController, UITextFieldDelegate {
-    
+    var scrollView: UIScrollView = UIScrollView()
+    var contentView: UIView = UIView()
     public var countryImage: UIImageView = {
             let imageView = UIImageView()
         imageView.backgroundColor = .red
         imageView.image = UIImage(named: "kgs")
         imageView.clipsToBounds = true
         imageView.backgroundColor = .orange
+        imageView.accessibilityIdentifier = "CountryImage"
         imageView.layer.cornerRadius = 80/2
         return imageView
     }()
@@ -46,6 +48,7 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
     
     public var valuteFullNameLabel: UILabel = {
         let label = UILabel()
+        label.accessibilityIdentifier = "ValuteFullNameLabel"
         label.textColor = .lightGray
         label.tintColor = .clear
         label.textAlignment = .center
@@ -57,6 +60,7 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
     
     public var totalSum: UILabel = {
         let label = UILabel()
+        label.accessibilityIdentifier = "TotalSum"
         label.textColor = #colorLiteral(red: 0.8410194441, green: 0.8410194441, blue: 0.8410194441, alpha: 1)
         label.tintColor = .clear
         label.textAlignment = .center
@@ -179,7 +183,7 @@ extension BalancesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let rate = presenter.getRate(index: indexPath)
+        let rate = presenter.getRates()[indexPath.row]
         cell.setData(nameValute: rate.country, amount:rate.amount, presenter: presenter, index: indexPath)
 
         return cell

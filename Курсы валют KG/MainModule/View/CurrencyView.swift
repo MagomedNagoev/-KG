@@ -61,6 +61,7 @@ class CurrencyView: UIView {
     var sumTextField: CurrencyTextField = {
         let textField = CurrencyTextField()
         textField.text = ""
+        textField.accessibilityIdentifier = "SumTextField"
         return textField
     }()
     
@@ -78,6 +79,10 @@ class CurrencyView: UIView {
         valuteNameLabel.text = valuteName.uppercased()
         valuteFullNameTextField.text = valuteFullname
         countryImage.image = UIImage(named: valuteName)
+        
+        button.accessibilityIdentifier = "ActiveTextFieldButton"
+        picker.accessibilityIdentifier = "Picker"
+        
         self.numberCountry = numberCountry
         self.countryRow = countryRow
         

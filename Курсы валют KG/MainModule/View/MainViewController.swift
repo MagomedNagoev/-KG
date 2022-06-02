@@ -56,12 +56,13 @@ class MainViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.widthAnchor.constraint(equalToConstant: 55).isActive = true
+        button.accessibilityIdentifier = "SwipeButton"
         return button
     }()
     
     
-    private var secondCurrencyView = CurrencyView(valuteName: "usd", valuteFullname: "Американский доллар", numberCountry: "Second", countryRow: 1)
-    private var firstCurrencyView = CurrencyView(valuteName: "kgs", valuteFullname: "Киргизский сом", numberCountry: "First", countryRow: 0)
+    private var firstCurrencyView = CurrencyView(valuteName: "usd", valuteFullname: "Американский доллар", numberCountry: "Second", countryRow: 1)
+    private var secondCurrencyView = CurrencyView(valuteName: "kgs", valuteFullname: "Киргизский сом", numberCountry: "First", countryRow: 0)
 
     
     override func viewDidLoad() {
@@ -80,13 +81,15 @@ class MainViewController: UIViewController {
     
     @objc
     func swipeCurrency() {
-        (firstCurrencyView.countryRow,
-         secondCurrencyView.countryRow) = (secondCurrencyView.countryRow,
-                                           firstCurrencyView.countryRow)
+        (secondCurrencyView.countryRow,
+         firstCurrencyView.countryRow) = (firstCurrencyView.countryRow,
+                                           secondCurrencyView.countryRow)
     }
 
     // MARK: - Constraints
     func UIconfig() {
+        secondCurrencyView.accessibilityIdentifier = "SecondCurrencyView"
+        firstCurrencyView.accessibilityIdentifier = "FirstCurrencyView"
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -98,8 +101,8 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         
         
-        secondCurrencyView.setPresenter(presenter: presenter)
         firstCurrencyView.setPresenter(presenter: presenter)
+        secondCurrencyView.setPresenter(presenter: presenter)
 
 
         
@@ -116,8 +119,8 @@ class MainViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         sellLabel.translatesAutoresizingMaskIntoConstraints = false
-        secondCurrencyView.translatesAutoresizingMaskIntoConstraints = false
         firstCurrencyView.translatesAutoresizingMaskIntoConstraints = false
+        secondCurrencyView.translatesAutoresizingMaskIntoConstraints = false
         swipeButton.translatesAutoresizingMaskIntoConstraints = false
         greyView.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -131,28 +134,28 @@ class MainViewController: UIViewController {
             
         ])
         
-        view.addSubview(secondCurrencyView)
+        view.addSubview(firstCurrencyView)
         NSLayoutConstraint.activate([
-            secondCurrencyView.rightAnchor.constraint(equalTo: greyView.rightAnchor, constant: -10),
-            secondCurrencyView.leftAnchor.constraint(equalTo: greyView.leftAnchor, constant: 10),
-            secondCurrencyView.topAnchor.constraint(equalTo: greyView.topAnchor, constant: 12),
-            secondCurrencyView.bottomAnchor.constraint(equalTo: secondCurrencyView.topAnchor, constant: 80)
+            firstCurrencyView.rightAnchor.constraint(equalTo: greyView.rightAnchor, constant: -10),
+            firstCurrencyView.leftAnchor.constraint(equalTo: greyView.leftAnchor, constant: 10),
+            firstCurrencyView.topAnchor.constraint(equalTo: greyView.topAnchor, constant: 12),
+            firstCurrencyView.bottomAnchor.constraint(equalTo: firstCurrencyView.topAnchor, constant: 80)
             
         ])
         
         view.addSubview(swipeButton)
         NSLayoutConstraint.activate([
             swipeButton.leftAnchor.constraint(equalTo: greyView.leftAnchor, constant: 0),
-            swipeButton.topAnchor.constraint(equalTo: secondCurrencyView.bottomAnchor, constant: 0)
+            swipeButton.topAnchor.constraint(equalTo: firstCurrencyView.bottomAnchor, constant: 0)
             
         ])
         
-        view.addSubview(firstCurrencyView)
+        view.addSubview(secondCurrencyView)
         NSLayoutConstraint.activate([
-            firstCurrencyView.rightAnchor.constraint(equalTo: secondCurrencyView.rightAnchor, constant: 0),
-            firstCurrencyView.leftAnchor.constraint(equalTo: secondCurrencyView.leftAnchor, constant: 0),
-            firstCurrencyView.topAnchor.constraint(equalTo: swipeButton.bottomAnchor, constant: 6),
-            firstCurrencyView.bottomAnchor.constraint(equalTo: firstCurrencyView.topAnchor, constant: 80)
+            secondCurrencyView.rightAnchor.constraint(equalTo: firstCurrencyView.rightAnchor, constant: 0),
+            secondCurrencyView.leftAnchor.constraint(equalTo: firstCurrencyView.leftAnchor, constant: 0),
+            secondCurrencyView.topAnchor.constraint(equalTo: swipeButton.bottomAnchor, constant: 6),
+            secondCurrencyView.bottomAnchor.constraint(equalTo: secondCurrencyView.topAnchor, constant: 80)
             
         ])
         
@@ -233,11 +236,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 extension MainViewController: MainViewProtocol {
     func calculateSums(numberCountry: String) {
         if numberCountry == "First" {
-            secondCurrencyView.sumTextField.text = presenter.calculate(amountString: firstCurrencyView.sumTextField.text ?? "0", fromCountry: firstCurrencyView.countryRow, toCountry: secondCurrencyView.countryRow, viewCountry: "Second")
-            secondCurrencyView.amount = 0
-        } else {
-            firstCurrencyView.sumTextField.text = presenter.calculate(amountString: secondCurrencyView.sumTextField.text ?? "0", fromCountry: secondCurrencyView.countryRow, toCountry: firstCurrencyView.countryRow, viewCountry: "First")
+            firstCurrencyView.sumTextField.text = presenter.calculate(amountString: secondCurrencyView.sumTextField.text ?? "0", fromCountry: secondCurrencyView.countryRow, toCountry: firstCurrencyView.countryRow, viewCountry: "Second")
             firstCurrencyView.amount = 0
+        } else {
+            secondCurrencyView.sumTextField.text = presenter.calculate(amountString: firstCurrencyView.sumTextField.text ?? "0", fromCountry: firstCurrencyView.countryRow, toCountry: secondCurrencyView.countryRow, viewCountry: "First")
+            secondCurrencyView.amount = 0
         }
     }
     

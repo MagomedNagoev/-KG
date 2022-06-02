@@ -22,17 +22,19 @@
 		1B55F20827E4F5D500C9787B /* ____________KG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F20627E4F5D500C9787B /* ____________KG.xcdatamodeld */; };
 		1B55F20A27E4F5DC00C9787B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B55F20927E4F5DC00C9787B /* Assets.xcassets */; };
 		1B55F21827E4F5DC00C9787B /* MainPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F21727E4F5DC00C9787B /* MainPresenterTest.swift */; };
-		1B55F22327E4F5DC00C9787B /* ____________KGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F22227E4F5DC00C9787B /* ____________KGUITests.swift */; };
 		1B55F23D27E4F7C800C9787B /* Valute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F23C27E4F7C800C9787B /* Valute.swift */; };
 		1B55F24227E4F7E000C9787B /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F24127E4F7E000C9787B /* MainPresenter.swift */; };
 		1B55F25027E4FA6F00C9787B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F24F27E4FA6F00C9787B /* NetworkService.swift */; };
 		1B55F26027E4FF9000C9787B /* AsselderModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B55F25F27E4FF9000C9787B /* AsselderModelBuilder.swift */; };
+		1B68D4CE28479C1B00EE902D /* BalancesViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68D4CD28479C1B00EE902D /* BalancesViewUITests.swift */; };
+		1B68D4D62847B80300EE902D /* MainViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B68D4D52847B80300EE902D /* MainViewUITest.swift */; };
 		1B6ACF4A27F5C9A50075C6C8 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6ACF4927F5C9A50075C6C8 /* CurrencyTextField.swift */; };
 		1B6ACF5127F6D0580075C6C8 /* BalancesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6ACF5027F6D0580075C6C8 /* BalancesPresenter.swift */; };
 		1B6B8532282FF56E00BFDC8F /* TabBar+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B8531282FF56E00BFDC8F /* TabBar+Ext.swift */; };
 		1B6B8537282FF67D00BFDC8F /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6B8536282FF67D00BFDC8F /* LaunchView.swift */; };
 		1B7C2CDC280AEA5700A187E6 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C2CDB280AEA5700A187E6 /* CountryCell.swift */; };
 		1B81149C2844F4E80064C67D /* BalancesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B81149B2844F4E80064C67D /* BalancesPresenter.swift */; };
+		1B8114A828460CF10064C67D /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8114A728460CF10064C67D /* MockNetworkService.swift */; };
 		1B825C1F27E5096C001E2A59 /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B825C1E27E5096C001E2A59 /* RateCell.swift */; };
 		1B825C5627E730DB001E2A59 /* CurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B825C5527E730DB001E2A59 /* CurrencyView.swift */; };
 		1B83D3512819549F00CE739E /* Rate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B83D34F2819549F00CE739E /* Rate+CoreDataClass.swift */; };
@@ -81,18 +83,20 @@
 		1B55F21727E4F5DC00C9787B /* MainPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTest.swift; sourceTree = "<group>"; };
 		1B55F21927E4F5DC00C9787B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B55F21E27E4F5DC00C9787B /* Курсы валют KGUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Курсы валют KGUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B55F22227E4F5DC00C9787B /* ____________KGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____________KGUITests.swift"; sourceTree = "<group>"; };
 		1B55F22427E4F5DC00C9787B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B55F23C27E4F7C800C9787B /* Valute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Valute.swift; sourceTree = "<group>"; };
 		1B55F24127E4F7E000C9787B /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		1B55F24F27E4FA6F00C9787B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		1B55F25F27E4FF9000C9787B /* AsselderModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsselderModelBuilder.swift; sourceTree = "<group>"; };
+		1B68D4CD28479C1B00EE902D /* BalancesViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesViewUITests.swift; sourceTree = "<group>"; };
+		1B68D4D52847B80300EE902D /* MainViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUITest.swift; sourceTree = "<group>"; };
 		1B6ACF4927F5C9A50075C6C8 /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		1B6ACF5027F6D0580075C6C8 /* BalancesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesPresenter.swift; sourceTree = "<group>"; };
 		1B6B8531282FF56E00BFDC8F /* TabBar+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Ext.swift"; sourceTree = "<group>"; };
 		1B6B8536282FF67D00BFDC8F /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		1B7C2CDB280AEA5700A187E6 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		1B81149B2844F4E80064C67D /* BalancesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesPresenter.swift; sourceTree = "<group>"; };
+		1B8114A728460CF10064C67D /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		1B825C1E27E5096C001E2A59 /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
 		1B825C5527E730DB001E2A59 /* CurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyView.swift; sourceTree = "<group>"; };
 		1B83D34F2819549F00CE739E /* Rate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rate+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -218,9 +222,10 @@
 		1B55F21627E4F5DC00C9787B /* Курсы валют KGTests */ = {
 			isa = PBXGroup;
 			children = (
+				1B8114A728460CF10064C67D /* MockNetworkService.swift */,
 				1B667C7C2843B63600C601FF /* TestMainModule */,
-				1B55F21927E4F5DC00C9787B /* Info.plist */,
 				1B8114A02844F4F50064C67D /* TestBalancesModule */,
+				1B55F21927E4F5DC00C9787B /* Info.plist */,
 			);
 			path = "Курсы валют KGTests";
 			sourceTree = "<group>";
@@ -228,7 +233,8 @@
 		1B55F22127E4F5DC00C9787B /* Курсы валют KGUITests */ = {
 			isa = PBXGroup;
 			children = (
-				1B55F22227E4F5DC00C9787B /* ____________KGUITests.swift */,
+				1B68D4CD28479C1B00EE902D /* BalancesViewUITests.swift */,
+				1B68D4D52847B80300EE902D /* MainViewUITest.swift */,
 				1B55F22427E4F5DC00C9787B /* Info.plist */,
 			);
 			path = "Курсы валют KGUITests";
@@ -515,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B8114A828460CF10064C67D /* MockNetworkService.swift in Sources */,
 				1B55F21827E4F5DC00C9787B /* MainPresenterTest.swift in Sources */,
 				1B81149C2844F4E80064C67D /* BalancesPresenter.swift in Sources */,
 			);
@@ -524,7 +531,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B55F22327E4F5DC00C9787B /* ____________KGUITests.swift in Sources */,
+				1B68D4D62847B80300EE902D /* MainViewUITest.swift in Sources */,
+				1B68D4CE28479C1B00EE902D /* BalancesViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
