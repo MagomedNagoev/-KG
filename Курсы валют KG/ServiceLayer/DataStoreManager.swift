@@ -29,35 +29,35 @@ open class DataStoreManager {
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         let resultController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                                managedObjectContext: persistentContainer.viewContext,
+                                                                managedObjectContext: mainContext,
                                                                 sectionNameKeyPath: nil,
                                                                 cacheName: nil)
         return resultController
     }()
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: DataStoreManager.modelName)
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
+        let container = NSPersistentContainer(name: DataStoreManager.modelName, managedObjectModel: DataStoreManager.model)
+        container.loadPersistentStores { _, error in
+          if let error = error as NSError? {
+            fatalError("Unresolved error \(error), \(error.userInfo)")
+          }
+        }
         return container
-    }()
+      }()
     
-
-    func addRate (name: String, amount: String) {
-        let rate = Rate(context: persistentContainer.viewContext)
+    @discardableResult
+    func addRate (name: String, amount: String) -> Rate {
+        let rate = Rate(context: mainContext)
         rate.amount = amount
         rate.country = name
-        saveContext(context: mainContext)
-
+        saveContext(mainContext)
+        return rate
     }
 
     func deleteRate(index: IndexPath) {
         let rate = fetchedResultsController.object(at: index)
         persistentContainer.viewContext.delete(rate)
-        saveContext(context: mainContext)
+        saveContext(mainContext)
     }
 
     func getRates() -> [Rate] {
@@ -68,38 +68,42 @@ open class DataStoreManager {
         }
         return fetchedResultsController.fetchedObjects!
     }
-
-    func getRate(index: IndexPath) -> Rate {
-        let rate = fetchedResultsController.object(at: index)
-        return rate
-    }
     
     
     // MARK: - Core Data Saving support
-    
-    public func saveDerivedContext(context: NSManagedObjectContext) {
-        context.perform {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-            self.saveContext(context: self.mainContext)
-        }
+    public func newDerivedContext() -> NSManagedObjectContext {
+        let context = persistentContainer.newBackgroundContext()
+        return context
     }
-    
-    public func saveContext (context: NSManagedObjectContext) {
-        if context != mainContext {
-            saveDerivedContext(context: context)
-            return
+
+//    public func saveContext() {
+//      saveContext(mainContext)
+//    }
+
+    public func saveContext(_ context: NSManagedObjectContext) {
+      if context != mainContext {
+        saveDerivedContext(context)
+        return
+      }
+
+      context.perform {
+        do {
+          try context.save()
+        } catch let error as NSError {
+          fatalError("Unresolved error \(error), \(error.userInfo)")
         }
-        
-        context.perform {
-            do {
-                try context.save()
-            } catch let error as NSError {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
+      }
+    }
+
+    public func saveDerivedContext(_ context: NSManagedObjectContext) {
+      context.perform {
+        do {
+          try context.save()
+        } catch let error as NSError {
+          fatalError("Unresolved error \(error), \(error.userInfo)")
         }
+
+        self.saveContext(self.mainContext)
+      }
     }
 }
