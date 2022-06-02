@@ -49,7 +49,7 @@ class LaunchView: UIView {
     
     
         func presentWeatherVC() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.removeFromSuperview()
         }
     }
