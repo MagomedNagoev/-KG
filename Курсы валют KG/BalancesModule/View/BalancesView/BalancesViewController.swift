@@ -86,10 +86,6 @@ class BalancesViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
-    
     func UIconfig() {
         view.backgroundColor = UIColor(red: 52/255,
                                        green: 52/255,
