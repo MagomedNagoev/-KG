@@ -85,9 +85,11 @@ class BalanceCell: UITableViewCell {
         
         addSubview(amountTextField)
         NSLayoutConstraint.activate([
-            amountTextField.leftAnchor.constraint(equalTo: centerXAnchor, constant: 0),
+            amountTextField.leftAnchor.constraint(equalTo: centerXAnchor, constant: 30),
             amountTextField.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
-            amountTextField.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor)
+            amountTextField.bottomAnchor.constraint(equalTo: line.bottomAnchor),
+            amountTextField.topAnchor.constraint(equalTo: topAnchor)
+//            amountTextField.centerYAnchor.constraint(equalTo: countryImage.centerYAnchor)
         ])
 
     }
